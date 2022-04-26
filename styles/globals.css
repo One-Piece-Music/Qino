@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Jianzi';
+  src: url('../assets/TestJianziFont.otf');
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +18,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.jianzipu {
+  font-family: 'Jianzi';
 }
