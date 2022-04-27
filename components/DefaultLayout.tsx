@@ -7,7 +7,7 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <React.Fragment>
       <NavBar />
-      <Container>{children}</Container>
+      <Container maxW='1280px'>{children}</Container>
       <Footer />
     </React.Fragment>
   )
