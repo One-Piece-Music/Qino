@@ -1,8 +1,16 @@
 import { createContext, useContext, ReactNode, useState } from 'react'
 
+export interface scoreJsonType {
+  title: string
+  author: string
+  tuning: string
+  description: string
+  score: string[]
+}
+
 type scoreContextType = {
-  data?: string | null
-  setData: (d: string) => void
+  data?: scoreJsonType | null
+  setData: (d: scoreJsonType) => void
 }
 
 const scoreContextDefaultValues: scoreContextType = {
@@ -21,7 +29,7 @@ type Props = {
 }
 
 export function ScoreProvider ({ children }: Props) {
-  const [data, setData] = useState<string | undefined>(undefined)
+  const [data, setData] = useState<scoreJsonType | undefined>(undefined)
 
   return (
     <scoreContext.Provider value={{ data, setData }}>

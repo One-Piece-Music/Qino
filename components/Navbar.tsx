@@ -8,7 +8,8 @@ import {
   useToast
 } from '@chakra-ui/react'
 import { useRef } from 'react'
-import { useScore } from '../context/ScoreContext'
+import { scoreJsonType, useScore } from '../context/ScoreContext'
+import ExampleScore from '../assets/example-score.json'
 
 const NavBar = () => {
   const { setData } = useScore()
@@ -40,18 +41,16 @@ const NavBar = () => {
         </Button>
         <Button
           colorScheme='purple'
-          onClick={() =>
-            setData(
-              '\uE005=\uE000\uE001\uE002\uE003\uE004 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-            )
-          }
+          onClick={() => {
+            setData(ExampleScore)
+          }}
         >
           Load Sample Score
         </Button>
       </ButtonGroup>
       <input
         hidden
-        accept='text/plain,.qin'
+        accept='application/JSON,.qin'
         type='file'
         ref={fileInput}
         onChange={event => {
@@ -60,7 +59,8 @@ const NavBar = () => {
           reader.onload = e => {
             const fileData = e?.target?.result
             if (typeof fileData === 'string') {
-              setData(fileData)
+              const jsonData:scoreJsonType = JSON.parse(fileData)
+              setData(jsonData)
             }
           }
           reader.readAsText(event?.target?.files![0])

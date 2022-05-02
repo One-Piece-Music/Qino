@@ -17,16 +17,24 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       {data !== null && data !== undefined && (
-        <Box maxHeight='86%' height='86%' m='auto'>
+        <Box maxHeight='85%' height='85%' m='auto'>
           <Flex className='jianzipu' flexDirection='column'>
             <Box
               overflowX='scroll'
-              height='86%'
+              height='85%'
               p={2}
-              letterSpacing='1px'
+              pb='24px'
               style={{ writingMode: 'vertical-rl', textOrientation: 'upright' }}
             >
-              <Text fontSize='32px'>{data}</Text>
+              <Text fontSize='54px'>{data.title}</Text>
+              {data.score.map((line, index) => {
+                return (
+                  // replace full-width space with wider space
+                  <Text fontSize='36px' key={index}>
+                    {line.replaceAll(' ', '\uE00C')}
+                  </Text>
+                )
+              })}
             </Box>
           </Flex>
         </Box>
