@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="./dist/schemata/mei-Jianzipu.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="./dist/schemata/mei-Jianzipu.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title>Guqin Jianzipu Customization Test</title>
+      </titleStmt>
+      <pubStmt>
+        <date>2025</date>
+      </pubStmt>
+    </fileDesc>
+  </meiHead>
+  <music>
+    <body>
+      <mdiv>
+        <score>
+          <section>
+            <staff n="1">
+              <layer n="1">
+                <zhengzi label="散勾四" xian="4" tone.type="san" rh.tech="gou"/>
+                <zhengzi label="散剔七" xian="7" tone.type="san" rh.tech="ti"/>
+                <zhengzi label="名九历五四" hui="9" lh.finger="ming" rh.tech="li">
+                  <zPart xian="5"/>
+                  <zPart xian="4"/>
+                </zhengzi>
+                <zhengzi label="撮中八，七；散五" rh.tech="cuo">
+                  <zPart lh.finger="zhong" xian="7" hui="8" tone.type="an"/>
+                  <zPart xian="5" tone.type="san"/>
+                </zhengzi>
+                <zhengzi label="名十八勾三" xian="3" hui="10" fen="8" tone.type="an" lh.finger="ming" rh.tech="gou"/>
+                <pangzi label="吟" lh.tech="yin"/>
+                <pangzi label="上六二" lh.tech="shang" hui="6" fen="2"/>
+              </layer>
+            </staff>
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>

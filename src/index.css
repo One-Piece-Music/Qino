@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'JianZiPu';
+  src: url('./assets/JianZiPu(v3).ttf');
+} 
+
+:root {
+  --jianzipu-font-family: 'JianZiPu', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --char-size: 3rem;
+  --char-line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent body scroll, let containers scroll */
+}
+
+/* 
+  Content Area:
+  Acts like a standard text paragraph.
+  This allows the font's internal spacing to work naturally.
+*/
+.jianzipu-content-area {
+  font-family: var(--jianzipu-font-family);
+  font-size: var(--char-size);
+  line-height: var(--char-line-height);
+  word-break: keep-all; /* Prevent breaking mid-word if possible */
+  padding: 1rem;
+}
+
+/* 
+  Individual Character Span:
+  Inline element. No margins, no padding that would disrupt flow.
+  We rely on the font itself for spacing.
+*/
+.jianzipu-char {
+  display: inline;
+  cursor: help;
+  border-bottom: none;
+
+  transition: color 0.2s ease-in-out;
+}
+
+.jianzipu-char:hover {
+  color: var(--pico-primary-hover-background);
+}
+
+.jianzipu-char[data-tooltip] {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.jianzipu-char[data-tooltip]::before,
+.jianzipu-char[data-tooltip]::after {
+  font-family: var(--pico-font-family, sans-serif);
+  font-size: 0.875rem;
+  letter-spacing: normal;
+  
+  white-space: pre; /* Allow newlines in tooltip */
+  text-align: left;
+}
+
+textarea {
+  font-family: var(--pico-font-family-monospace) !important;
+}
