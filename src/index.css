@@ -1,10 +1,11 @@
 @font-face {
-  font-family: 'JianZiPu';
-  src: url('./assets/JianZiPu(v3).ttf');
-} 
+  font-family: "JianZiPu";
+  src: url("./assets/JianZiPu(v3).ttf");
+}
 
 :root {
-  --jianzipu-font-family: 'JianZiPu', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --jianzipu-font-family:
+    "JianZiPu", system-ui, Avenir, Helvetica, Arial, sans-serif;
   --char-size: 3rem;
   --char-line-height: 1.5;
 
@@ -14,13 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   overflow: hidden; /* Prevent body scroll, let containers scroll */
 }
 
-/* 
+/*
   Content Area:
   Acts like a standard text paragraph.
   This allows the font's internal spacing to work naturally.
@@ -33,7 +35,7 @@ body, html {
   padding: 1rem;
 }
 
-/* 
+/*
   Individual Character Span:
   Inline element. No margins, no padding that would disrupt flow.
   We rely on the font itself for spacing.
@@ -60,11 +62,16 @@ body, html {
   font-family: var(--pico-font-family, sans-serif);
   font-size: 0.875rem;
   letter-spacing: normal;
-  
+
   white-space: pre; /* Allow newlines in tooltip */
   text-align: left;
 }
 
 textarea {
+  font-family: var(--pico-font-family-monospace) !important;
+}
+
+.error {
+  font-size: 1.5rem;
   font-family: var(--pico-font-family-monospace) !important;
 }

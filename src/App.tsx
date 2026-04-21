@@ -1,23 +1,31 @@
-import { useState, useEffect, useMemo } from 'react';
-import Menu from './components/Menu';
-import Editor from './components/Editor';
-import Viewer from './components/Viewer';
-import type { MeiContext } from './types';
-import { getAvailableContexts } from './utils/meiParser';
+import { useState, useEffect, useMemo } from "react";
+import Menu from "./components/Menu";
+import Editor from "./components/Editor";
+import Viewer from "./components/Viewer";
+import type { MeiContext } from "./types";
+import { getAvailableContexts } from "./utils/meiParser";
 
 function App() {
   const [meiCode, setMeiCode] = useState<string>("");
-  const [selectedContext, setSelectedContext] = useState<MeiContext | null>(null);
+  const [selectedContext, setSelectedContext] = useState<MeiContext | null>(
+    null,
+  );
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  // Handle Theme Switching for Pico CSS
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   // Load default MEI from public folder on mount
   useEffect(() => {
-    fetch('./assets/default.mei')
-      .then(res => {
+    fetch("./assets/default.mei")
+      .then((res) => {
         if (!res.ok) throw new Error("Failed to load default file");
         return res.text();
       })
-      .then(text => setMeiCode(text))
-      .catch(err => console.error(err));
+      .then((text) => setMeiCode(text))
+      .catch((err) => console.error(err));
   }, []);
 
   // Scan for available contexts whenever code changes
@@ -30,8 +38,10 @@ function App() {
   useEffect(() => {
     if (availableContexts.length > 0) {
       // If nothing selected, or currently selected is no longer valid (e.g., ID changed)
-      const isValid = selectedContext && availableContexts.some(c => c.id === selectedContext.id);
-      
+      const isValid =
+        selectedContext !== null &&
+        availableContexts.some((c) => c.id === selectedContext.id);
+
       if (!selectedContext || !isValid) {
         setSelectedContext(availableContexts[0]);
       }
@@ -42,23 +52,32 @@ function App() {
 
   return (
     <>
-      <Menu meiCode={meiCode} onLoad={setMeiCode} />
-      
-      <main className="container-fluid" style={{ height: 'calc(100vh - 100px)' }}>
-        <div className="grid" style={{ height: '100%' }}>
+      <Menu
+        meiCode={meiCode}
+        onLoad={setMeiCode}
+        theme={theme}
+        onThemeChange={setTheme}
+      />
+
+      <main
+        className="container-fluid"
+        style={{ height: "calc(100vh - 100px)" }}
+      >
+        <div className="grid" style={{ height: "100%" }}>
           {/* Left Side: Viewer */}
-          <div style={{ height: '100%', overflow: 'hidden' }}>
+          <div style={{ height: "100%", overflow: "hidden" }}>
             <Viewer meiCode={meiCode} context={selectedContext} />
           </div>
 
           {/* Right Side: Editor */}
-          <div style={{ height: '100%', overflow: 'hidden' }}>
-            <Editor 
-              code={meiCode} 
-              onChange={setMeiCode} 
+          <div style={{ height: "100%", overflow: "hidden" }}>
+            <Editor
+              code={meiCode}
+              onChange={setMeiCode}
               availableContexts={availableContexts}
               selectedContext={selectedContext}
               onContextChange={setSelectedContext}
+              theme={theme}
             />
           </div>
         </div>

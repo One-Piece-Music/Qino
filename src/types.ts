@@ -1,11 +1,11 @@
-export type JianzipuElementType = 'zhengzi' | 'pangzi' | 'pangzhu';
+export type JianzipuElementType = "zhengzi" | "pangzi" | "pangzhu";
 
 export interface JianzipuEvent {
   id: string;
   type: JianzipuElementType;
-  meiLabel: string;     // The raw value from the XML @label attribute
+  meiLabel: string; // The raw value from the XML @label attribute
   displayLabel: string; // The converted string for the Jianzipu font
-  rawXml: string;       // Keeping raw XML string for potential debug
+  rawXml: string; // Keeping raw XML string for potential debug
 }
 
 export interface MeiContext {
